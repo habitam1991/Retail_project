@@ -1,0 +1,23 @@
+[{"id":1,
+"name":"hp",
+"code":"1234",
+"rate":"3.2",
+"productCategory":"mango"
+  },
+  {
+"id":2,
+"name":"hp",
+"code":"0014",
+"rate":"3.2",
+"productCategory":"mango"
+  },
+  {
+    
+"id":3,
+"name":"hp",
+"code":"2456",
+"rate":"3.2",
+"productCategory":"mango"
+  }
+  
+  ]

@@ -1,0 +1,216 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/cf424649-ccbf-47e1-a86f-ccf91f8f1e50/ # 
+title: Retail_Api-Final_project
+types: 
+  products: !include datatype/GetAllproducts.raml
+  Bill: !include /datatype/GetAllBill.raml
+  productcatagory: !include datatype/productcatagory.raml
+/products:
+  description: retrive products
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+             type: products[]
+             example: !include example/getAllproductexa.json
+      400:
+        body:
+          application/json:
+            example: {massage : "bad request"}
+                               
+  post:
+    description: products Creates a new product based on request JSON
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include example/postproduct.json
+      201:
+        body:
+          application/json:
+            example: {"massage": "created"}
+  
+  /{productID}:
+    uriParameters:
+      productID:
+        type: integer                    
+    get:
+      description: fetch a specific product
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include example/getprodID.json
+                
+        400:
+          body:
+            application/json:
+              example: {"massage":"bad request"}
+                                
+    put:
+      description: Updates product data based on request JSON
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include example/putproductid.json
+        400:
+          body:
+            application/json:
+              example:
+                       {"massage":"bad request"}       
+    delete:
+      description: Delete an existing product if it is not associated with a bill.
+      responses:
+        200:
+          body:
+            application/json:
+              example:  {"remove product spacific id"}
+        400:
+          body:
+            application/json:
+              example:
+                       {"massage":"bad request"}      
+/Bill:
+  get:
+    description: fetches all bill data
+    responses:
+      200:
+        body:
+          application/json:
+            type: Bill[]
+            example: !include example/GetAllBill.json
+      400:
+          body:
+            application/json:
+              example:
+                       {"massage":"bad request"}      
+  post:
+    description: creates a bill Id
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include example/postBill.json
+      400:
+          body:
+            application/json:
+              example:
+                       {"massage":"bad request"}      
+                               
+                                
+  /{BillID}:
+    get:
+      description: fetches bill of a particular id
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include example/getBillId.json
+        400:
+          body:
+            application/json:
+              example:
+                       {"massage":"bad request"}
+      
+                
+    put:
+      description: Updates bill data             
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include example/putBill.json
+        400:
+          body:
+            application/json:
+              example:
+                       {"massage":"bad request"}
+                
+    delete:
+      description: Delete bill from the system.
+      responses:
+        200:
+          body:
+            application/json:
+              example: {"remove bill id secssesfully"}
+        400:
+          body:
+            application/json:
+              example:
+                       {"massage":"bad request"}
+      
+/productcatagory:
+  get:
+    description: productcatagories fetches list of all productcatagory data
+    responses:
+      200:
+        body:
+          application/json:
+            type: productcatagory[]
+            example: !include example/GetAllproctcatagory.json
+      400:
+          body:
+            application/json:
+              example:
+                       {"massage":"bad request"}
+      
+  post:
+    description: Creates a new productcatagory based on request JSON
+    responses:
+      200:
+        body:
+          application/json:
+             example: {"id":3,
+                         "name":"industry"
+                       }
+      400:
+          body:
+            application/json:
+              example:
+                       {"massage":"bad request"}
+                 
+  /{id}:
+    uriParameters:
+      id:
+        type: 
+    get:
+      description: fetch a specific productcatagory
+      responses:
+        200:
+          body:
+            application/json:
+              example: {"id":1,"name":"store"}
+        400:
+          body:
+            application/json:
+              example:
+                       {"massage":"bad request"}
+      
+        
+    put:
+      description: Updates productcatagory data based on request JSON
+      responses:
+        200:
+          body:
+            application/json:
+              example: {"name":"store"}
+        400:
+          body:
+            application/json:
+              example:
+                       {"massage":"bad request"}
+
+    delete:
+      description: Delete an existing productcatagory
+      responses:
+        200:
+          body:
+            application/json:
+              example: {"remove productcatagory spacific id successfully"}
+        400:
+          body:
+            application/json:
+              example:
+                {"massage":"bad request"}      
